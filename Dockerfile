@@ -1,4 +1,4 @@
-FROM atlassian/default-image:latest
+FROM atlassian/default-image:2
 
 # Download the necessary tools to deploy to kubernetes
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
