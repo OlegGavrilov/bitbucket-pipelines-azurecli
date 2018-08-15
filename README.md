@@ -1,6 +1,6 @@
 # BitBucket Pipelines Azure CLI
 
-Ryosuke Goto
+Original author: Ryosuke Goto
 
 ## Overview
 
@@ -11,7 +11,7 @@ This base image enable Azure CLI on Bitbucket Pipelines continuous integration/d
 Specify this images in bitbucket-pipelines.yml
 
 ```
-image: pathtrk/bitbucket-pipelines-azurecli:latest
+image: ogavrilov/bitbucket-pipelines-azurecli:latest
 ```
 
 ## Notice
