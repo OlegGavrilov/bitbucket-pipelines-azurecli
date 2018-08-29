@@ -1,15 +1,11 @@
 FROM atlassian/default-image:2
 
-# Download the necessary tools to deploy to kubernetes
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-RUN chmod +x ./kubectl
-RUN mv ./kubectl /usr/local/bin/kubectl
+RUN apt-get update && apt-get -y install apt-transport-https
 
-# Install Azure CLI
-RUN apt-get update && apt-get install -y libssl-dev libffi-dev python-dev python-pip
-RUN curl -L https://aka.ms/InstallAzureCliBundled -o azure-cli_bundle.tar.gz
-RUN tar -xvzf azure-cli_bundle.tar.gz
-RUN azure-cli_bundle_*/installer
-ENV PATH=$PATH:/root/bin
+RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ xenial main" | tee /etc/apt/sources.list.d/azure-cli.list
+
+RUN curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
+RUN apt-get update && apt-get -y install azure-cli
 
 CMD ["/bin/bash"]
